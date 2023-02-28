@@ -10,8 +10,8 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', 'G-88C4XQ1YYC');
-        gtag('config', 'G-MWN34VXW1B');
+        // gtag('config', 'G-88C4XQ1YYC');
+        // gtag('config', 'G-MWN34VXW1B');
         gtag('config', 'UA-218740299-1');
     </script>
     <!-- Google tag (gtag.js) -->
@@ -35,6 +35,8 @@
         if (ga.getAll) {
                 
             var trackers = ga.getAll();
+
+            console.log(trackers);
 
             var tagList = document.getElementById("tag-list");
             tagList.innerHTML = "";
