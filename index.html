@@ -25,31 +25,25 @@
     </ul>
 
     <script>
-      // Replace "UA-XXXXXXXXX-X" with your Google Analytics property ID.
-      var gaPropertyId = "UA-XXXXXXXXX-X";
+        var trackingId = '';
+        var ga = window.ga || function() {
+            (ga.q = ga.q || []).push(arguments);
+        };
+        ga.l = +new Date;
+        ga('create', trackingId, 'auto');
 
-      // Check if the Google Analytics tracking object exists.
-      if (window.ga && ga.create) {
-        // Check if the tracking object has been initialized with the correct property ID.
-        var trackers = ga.getAll();
-        var hasPropertyId = false;
-        for (var i = 0; i < trackers.length; i++) {
-          if (trackers[i].get("trackingId") === gaPropertyId) {
-            hasPropertyId = true;
-            break;
-          }
-        }
-        if (hasPropertyId) {
-          var tagList = document.getElementById("tag-list");
-          tagList.innerHTML = "";
-          for (var i = 0; i < trackers.length; i++) {
-            var tag = document.createElement("li");
-            tag.textContent = trackers[i].get("name");
-            tagList.appendChild(tag);
-          }
-        } else {
-          document.getElementById("tag-list").innerHTML = "Google Analytics tags are installed, but not for the correct property ID.";
-        }
+        if (ga.getAll) {
+                
+            var trackers = ga.getAll();
+
+            var tagList = document.getElementById("tag-list");
+            tagList.innerHTML = "";
+            for (var i = 0; i < trackers.length; i++) {
+                var tag = document.createElement("li");
+                tag.textContent = trackers[i].get("trackingId");
+                tagList.appendChild(tag);
+            }
+     
       } else {
         document.getElementById("tag-list").innerHTML = "Google Analytics tags are not installed.";
       }
