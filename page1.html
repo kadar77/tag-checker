@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3LY9VKVCG5"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-3LY9VKVCG5');
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <title>Page 1</title>
+  </head>
+  <body>
+    <h1>List Installed Google Analytics Tags</h1>
+    <ul id="tag-list">
+      <li>Loading...</li>
+    </ul>
+    <script>
+
+        function getGtagContainers() {
+            var tagList = document.getElementById("tag-list");
+            tagList.innerHTML = "";
+
+            var scripts = document.getElementsByTagName('script');
+
+            for (var i = 0; i < scripts.length; i++) {
+                if (scripts[i].src && scripts[i].src.indexOf('googletagmanager.com/gtag/js') > -1) {
+                    var src = scripts[i].src;
+                    var containerId = src.substring(src.indexOf('id=') + 3);
+
+                    var tag = document.createElement("li");
+                    tag.textContent = containerId;
+                    tagList.appendChild(tag);
+                }
+            }
+        }
+
+        if (window.dataLayer) {
+            console.log("gtag container is installed!");
+            var ga4MeasurementId = gtag('get', 'G-3LY9VKVCG5');
+            console.log('Google Analytics 4 measurement ID: ' + ga4MeasurementId);
+            document.getElementById("tag-list").innerHTML = "Google Analytics tags are installed.";
+      
+            getGtagContainers();
+
+        } else {
+            console.log("Gtag container is not installed.");
+            document.getElementById("tag-list").innerHTML = "Google Analytics tags are not installed.";
+        }
+      
+    </script>
+    
+  </body>
+</html>
